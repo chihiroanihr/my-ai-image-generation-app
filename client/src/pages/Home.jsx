@@ -23,7 +23,7 @@ const Home = () => {
   const [searchText, setSearhText] = useState("");
 
   return (
-    <secrion
+    <section
       className={twMerge(
         "mx-auto",
         "max-w-7xl", // max-width: 80rem = 1280px
@@ -87,7 +87,7 @@ const Home = () => {
           </>
         )}
       </div>
-    </secrion>
+    </section>
   );
 };
 
