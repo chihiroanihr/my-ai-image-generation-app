@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { SvgLoader, Card, FormField } from "../components";
 
@@ -36,8 +36,8 @@ const Home = () => {
         </h1>
         <p
           className={twMerge(
-            "text-[16px] text-[#666e75]",
             "mt-2 max-w-[500px]",
+            "text-[16px] text-[#666e75]",
           )}
         >
           Browse through a collection of imaginative and visually stunning
@@ -60,11 +60,12 @@ const Home = () => {
         ) : (
           // Results
           <>
+            {/* Search Text */}
             {searchText && (
               <h2
                 className={twMerge(
-                  "text-xl font-medium text-[#666e75]",
                   "mb-3",
+                  "text-xl font-medium text-[#666e75]",
                 )}
               >
                 Showing results for{" "}
@@ -72,6 +73,7 @@ const Home = () => {
               </h2>
             )}
 
+            {/* Render Results as Cards */}
             <div
               className={twMerge(
                 "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
