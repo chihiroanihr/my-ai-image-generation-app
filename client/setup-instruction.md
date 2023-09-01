@@ -9,7 +9,7 @@ While inside _**/client**_ folder...
 
 3. Install all required packages:
 
-   - [**Tailwind CSS for Vite**](https://tailwindcss.com/docs/guides/vite):</br>
+   - [**Tailwind CSS for Vite**](https://tailwindcss.com/docs/guides/vite)</br>
      `npm install -D tailwindcss postcss autoprefixer`
    - [**Tailwind Merge** [Optional]](https://www.npmjs.com/package/tailwind-merge)</br>
      `npm install tailwind-merge`
