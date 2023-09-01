@@ -1,4 +1,4 @@
-# Setup
+# Setup Client
 
 Create _**/client**_ folder</br>
 While inside _**/client**_ folder...
