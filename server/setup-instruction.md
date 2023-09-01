@@ -44,7 +44,7 @@ While inside _**/server**_ folder...
    }
    ```
 
-5. Setup base of server application by creating _**index.js**_ file.
+5. Setup base of server application by creating _**index.js**_ file:
 
    ```js
    import express from "express";
@@ -81,3 +81,72 @@ While inside _**/server**_ folder...
 6. Start your server: `npm start`
 
 7. Open http://localhost:{#PORT} on browser to check server running.
+
+# Setup MongoDB
+
+1. Go to [MongoDB Website](https://mongodb.com) and click on **Try Free** --> Register Account.
+
+2. Create Cluster
+
+3. Check the following tabs in "**SEQURITY**" inside left sidebar to verify information added are correct.
+
+   - "_**Quickstart**_": Verify database authentication method, username, and password.
+   - "_**Database Access**_": Verify database users (yourself as admin) are added.
+   - "_**Network Access**_": Verify your current IP address that are added.
+
+</br>
+
+4. Go to "**OVERVIEW**" and click on **CONNECT** button in the main page. Then, click on **Drivers** under "**Connect to your application**" label.
+
+5. Copy the string provided under "**3. Add your connection string into your application code**". Paste the string inside _**.env**_ file and replace `<password>` with your own password:
+
+   ```json
+   MONGODB_CONNECTION_URL="mongodb+srv://chihiroanihr:<password>@cluster0.{...}.mongodb.net/?retryWrites=true&w=majority"
+   ```
+
+# Connect MongoDB with your application
+
+1. Create folder _**/database**_. Inside the folder, create _**connect.js**_ file which will contain a function that connects the application to the database:
+
+   ```js
+   import mongoose from "mongoose";
+
+   const connectDB = (url) => {
+     mongoose.set("strictQuery", true);
+
+     // Connect
+     mongoose
+       .connect(url)
+       .then(() => console.log("MongoDB connected."))
+       .catch((err) => console.log(err));
+   };
+
+   export default connectDB;
+   ```
+
+2. Import _**/database/connect.js**_ in _**index.js**_:
+
+   ```js
+   import connectDB from "./database/connect.js";
+   ```
+
+3. Modify _**startServer()**_ function inside _**index.js**_ and call _**connectDB()**_ function:
+
+   ```js
+   // Start Server
+   const startServer = async () => {
+     try {
+       // Connect to Database
+       connectDB(process.env.MONGODB_CONNECTION_URL);
+
+       // Open Server
+       app.listen(PORT, () =>
+         console.log(`Server has started on port http://localhost:${PORT}`)
+       );
+     } catch (error) {
+       console.log(error);
+     }
+   };
+   ```
+
+4. Make sure to re-start your server via `npm start` and verify that MongoDB is connected.
