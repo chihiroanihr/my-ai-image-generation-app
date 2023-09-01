@@ -34,12 +34,23 @@ While inside _**/client**_ folder...
    @tailwind utilities;
    ```
 
-8. Import all required fonts in _**index.html**_:
+8. [Optional] Install [**Prettier Plugin for Tailwind CSS** [Optional]](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)</br>
+   `npm install -D prettier prettier-plugin-tailwindcss`
 
-   ```html
-   <head>
-     <link rel="stylesheet" href="{{ link_to_fonts }}" />
-   </head>
+9. [Optional] Create _**prettier.config.js**_ file and add the following:
+
+   ```js
+   export default {
+     plugins: ["prettier-plugin-tailwindcss"],
+   };
    ```
 
-9. Start your build process: `npm run dev`
+10. Import all required fonts in _**index.html**_:
+
+    ```html
+    <head>
+      <link rel="stylesheet" href="{{ link_to_fonts }}" />
+    </head>
+    ```
+
+11. Start your build process: `npm run dev`
