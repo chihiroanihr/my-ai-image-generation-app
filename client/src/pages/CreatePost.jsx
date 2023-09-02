@@ -6,6 +6,8 @@ import { getRandomPrompt } from "../utils";
 import { preview } from "../assets";
 
 const CreatePost = () => {
+  const REQUEST_URL = "http://localhost:8080/api/v1/dalle";
+
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -30,8 +32,49 @@ const CreatePost = () => {
   // Handle form submit
   const handleSubmit = () => {};
 
-  // Start generating image (call backend)
-  const generateImage = () => {};
+  // Start generating image (call to the backend)
+  const generateImage = async () => {
+    // If prompt entered
+    if (form.prompt) {
+      try {
+        setGeneratingImg(true);
+
+        // Response: AI-generated image
+        const response = await fetch(REQUEST_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: form.prompt }),
+        });
+
+        // Parse the response
+        const data = await response.json();
+
+        // If not success then throw new error
+        if (response.status !== 200) {
+          const errorStatusText = response.statusText;
+          const errorMessage = data?.error?.message;
+          throw new Error(
+            `${errorStatusText}${errorMessage ? ` (${errorMessage})` : ""}`,
+          );
+        }
+
+        // Save and render image
+        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      } catch (error) {
+        // Error
+        console.log(error);
+        alert(error);
+      } finally {
+        setGeneratingImg(false);
+      }
+    }
+    // If no prompt entered
+    else {
+      alert("Please enter a prompt.");
+    }
+  };
 
   return (
     <section className="mx-auto max-w-7xl">
