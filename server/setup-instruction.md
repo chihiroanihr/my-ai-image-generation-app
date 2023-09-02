@@ -150,3 +150,132 @@ While inside _**/server**_ folder...
    ```
 
 4. Make sure to re-start your server via `npm start` and verify that MongoDB is connected.
+
+# Create Model
+
+1. Create another folder _**/models**_ inside _**/database**_ folder. Then create any files inside _**/database/models**_ which will serve as a model for the created document in the MongoDB database.</br></br>
+   For example (_**/database/models/post.js**_):
+
+   ```js
+   import mongoose from "mongoose";
+
+   // Post Schema
+   const Post = new mongoose.Schema({
+     name: { type: String, required: true },
+     prompt: { type: String, required: true },
+     photo: { type: String, required: true },
+   });
+
+   // Model of the Post Schema
+   const PostSchema = mongoose.model("Post", Post);
+
+   export default PostSchema;
+   ```
+
+# Create Routes: API Endpoints
+
+1. Create _**/routes**_ folder. Then create any files inside _**/routes**_ which will serve as API Routes which will be accessible from client-side.</br></br>
+   For example (_**/routes/dalleRoutes.js**_):
+
+   ```js
+   import express from "express";
+   import * as dotenv from "dotenv";
+   import { OpenAI } from "openai";
+
+   dotenv.config();
+
+   const router = express.Router();
+
+   ...
+
+   router.route("/").get((req, res) => {
+     res.send("Hello from DALL-E");
+   });
+
+   ...
+
+   export default router;
+   ```
+
+2. Import _**/routes/{any_file}.js**_ in _**index.js**_:
+
+   ```js
+   import dalleRoutes from "./routes/dalleRoutes.js";
+   ```
+
+3. Add all created routes as API endpoints in a middleware, which will be used to call from client-side:
+
+   ```js
+   // API Middlewares
+   app.use("/api/v1/dalle", dalleRoutes);
+   ...
+   ```
+
+4. Make sure to re-start your server via `npm start` and enter http://localhost:8080/api/v1/dalle or any URI to the API endpoint in order to verify that API is successfully called from client-side.
+
+# Setup OpenAI API
+
+1. Go to [OpenAI Website](https://openai.com/) and Click **API** on the top navbar > Click **Get Started** button.
+
+2. Login to the OpenAI account. You will be redirected to OpenAI Dashboard after login.
+
+3. Click on your account icon on the top-right navbar > Click "**View API Keys**".
+
+4. Click "**+ Create new secret key**" button to generate new API key.
+
+5. Copy the API key generated and store it in _**.env**_ folder:
+
+   ```json
+     OPENAI_API_KEY="{your api key}"
+   ```
+
+6. Make sure to re-start your server: `npm start`
+
+# Use OpenAI API
+
+1. Paste following example code in your desired file.</br></br>
+   For example (_**/routes/dalleRoutes.js**_):
+
+   ```js
+   import express from "express";
+   import * as dotenv from "dotenv";
+   import { OpenAI } from "openai";
+
+   dotenv.config();
+
+   const router = express.Router();
+
+   // Register OpenAI API Key
+   const openai = new OpenAI({
+     apiKey: process.env.OPEN_API_KEY,
+   });
+
+   // Talk to OpenAI DALL-E API
+   router.route("/").post(async (req, res) => {
+     try {
+       // Obtain prompt from the client
+       const { prompt } = req.body;
+
+       // Generate image
+       const aiResponse = await openai.createImage({
+         prompt,
+         n: 1, // only 1 image
+         size: "1024x1024",
+         response_format: "b64_json",
+       });
+
+       // Obtain the result image
+       const image = aiResponse.data.data[0].b64_json;
+
+       // Send back to the client
+       res.status(200).json({ photo: image });
+     } catch (error) {
+       // Error
+       res.status(500).send(error?.response.data.error.message);
+     }
+   });
+
+   export default router;
+   ```
+
+2. Start the server: `npm start`
