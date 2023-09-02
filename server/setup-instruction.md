@@ -97,7 +97,7 @@ While inside _**/server**_ folder...
 5. Copy the string provided under "**3. Add your connection string into your application code**". Paste the string inside _**.env**_ file and replace `<password>` with your own password:
 
    ```
-   MONGODB_CONNECTION_URL="mongodb+srv://chihiroanihr:<password>@cluster0.{...}.mongodb.net/?retryWrites=true&w=majority"
+   MONGODB_CONNECTION_URL="mongodb+srv://{username}:<password>@cluster0.{...}.mongodb.net/?retryWrites=true&w=majority"
    ```
 
 # Connect MongoDB with your application
