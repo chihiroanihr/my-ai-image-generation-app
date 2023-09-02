@@ -18,8 +18,6 @@ While inside _**/client**_ folder...
    - [**FileSaver.js**](https://www.npmjs.com/package/file-saver)</br>
      `npm install file-saver`
 
-</br>
-
 4. Modify _**/assets**_ folder, create _**/constants**_ folder, modify _**index.css**_ file, and delete initial code inside _**App.jsx**_ file.
 
 5. Initialize tailwind with:</br>
