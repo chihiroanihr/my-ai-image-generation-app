@@ -21,7 +21,9 @@ app.get("/", async (req, res) => {
   res.send("Hello from DALL-E!");
 });
 
-// Start Server
+/**
+ * Start Server
+ */
 const startServer = async () => {
   try {
     // Connect to Database
