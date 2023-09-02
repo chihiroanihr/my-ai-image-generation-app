@@ -233,13 +233,17 @@ While inside _**/server**_ folder...
 
 # Use OpenAI API
 
+### IMPORTANT:
+
+Make sure to add **Credit Balance** to be able to use OpenAI API.<br/>Refer to [**OpenAI Pricing**](https://openai.com/pricing)
+
 1. Paste following example code in your desired file.</br></br>
    For example (_**/routes/dalleRoutes.js**_):
 
    ```js
    import express from "express";
    import * as dotenv from "dotenv";
-   import { OpenAI } from "openai";
+   import OpenAI from "openai";
 
    dotenv.config();
 
@@ -257,7 +261,7 @@ While inside _**/server**_ folder...
        const { prompt } = req.body;
 
        // Generate image
-       const aiResponse = await openai.createImage({
+       const aiResponse = await openai.images.generate({
          prompt,
          n: 1, // only 1 image
          size: "1024x1024",
@@ -265,13 +269,14 @@ While inside _**/server**_ folder...
        });
 
        // Obtain the result image
-       const image = aiResponse.data.data[0].b64_json;
+       const image = aiResponse.data[0].b64_json;
 
        // Send back to the client
        res.status(200).json({ photo: image });
      } catch (error) {
        // Error
-       res.status(500).send(error?.response.data.error.message);
+       console.log("[LOG] ", error);
+       res.status(500).send(error);
      }
    });
 
