@@ -24,7 +24,7 @@ app.use("/api/v1/dalle", dalleRoutes);
 
 // Routes
 app.get("/", async (req, res) => {
-  res.send("Hello from DALL-E!");
+  res.send("Server Side.");
 });
 
 /**
