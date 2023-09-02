@@ -2,6 +2,8 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
+import connectDB from "./database/connect.js"; // import ... from "./database/connect" works in React yet not in Node.js
+
 const PORT = 8080;
 
 // Pull env variables
@@ -21,9 +23,17 @@ app.get("/", async (req, res) => {
 
 // Start Server
 const startServer = async () => {
-  app.listen(PORT, () =>
-    console.log(`Server has started on port http://localhost:${PORT}`)
-  );
+  try {
+    // Connect to Database
+    connectDB(process.env.MONGODB_CONNECTION_URL);
+
+    // Open Server
+    app.listen(PORT, () =>
+      console.log(`Server has started on port http://localhost:${PORT}`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 startServer();
