@@ -30,8 +30,6 @@ While inside _**/server**_ folder...
    - [**OpenAI Node API Library**](https://www.npmjs.com/package/openai): Provides access to the OpenAI REST API</br>
      `npm install openai`
 
-</br>
-
 4. Since we will be working with modules (ES6+ Imports & Exports). To enable it, add the following key-value pair inside _**package.json**_:
 
    ```json
@@ -94,13 +92,11 @@ While inside _**/server**_ folder...
    - "_**Database Access**_": Verify database users (yourself as admin) are added.
    - "_**Network Access**_": Verify your current IP address that are added.
 
-</br>
-
 4. Go to "**OVERVIEW**" and click on **CONNECT** button in the main page. Then, click on **Drivers** under "**Connect to your application**" label.
 
 5. Copy the string provided under "**3. Add your connection string into your application code**". Paste the string inside _**.env**_ file and replace `<password>` with your own password:
 
-   ```json
+   ```
    MONGODB_CONNECTION_URL="mongodb+srv://chihiroanihr:<password>@cluster0.{...}.mongodb.net/?retryWrites=true&w=majority"
    ```
 
@@ -225,7 +221,7 @@ While inside _**/server**_ folder...
 
 5. Copy the API key generated and store it in _**.env**_ folder:
 
-   ```json
+   ```
      OPENAI_API_KEY="{your api key}"
    ```
 
