@@ -56,3 +56,37 @@ While inside _**/client**_ folder...
     ```
 
 11. Start your build process: `npm run dev`
+
+# Integrate Backend to Frontend (client) via API Endpoint
+
+For example in one of your file inside _**/clients**_:
+
+```js
+const REQUEST_URL = "http://localhost:8080/api/v1/dalle";
+
+try {
+  // Response: AI-generated image
+  const response = await fetch(REQUEST_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ prompt: form.prompt }),
+  });
+
+  // Parse the response
+  const data = await response.json();
+
+  // If not success then throw new error
+  if (response.status !== 200) {
+    throw new Error("Internal Server Error.");
+  }
+
+  // Save and render image
+  setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+} catch (error) {
+  // Error
+  console.log(error);
+  alert(error);
+}
+```
