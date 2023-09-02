@@ -5,7 +5,7 @@ import { v2 as cloudinary } from "cloudinary";
 import Post from "../database/models/post.js";
 
 /**
- * Endpoint to create and retrieve posts.
+ * Endpoint to create post with result image uploaded, and share it with the community.
  */
 
 dotenv.config();
