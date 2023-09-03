@@ -20,7 +20,9 @@ const RenderCards = ({ data, message }) => {
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
-  const [searchText, setSearhText] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [searchedResults, setSearchedResults] = useState(null);
+  const [searchTimeout, setSearchTimeout] = useState(null); // store reference to a timer
 
   /**
    * Get all the posts from database
@@ -58,6 +60,35 @@ const Home = () => {
     fetchPosts();
   }, []);
 
+  /**
+   * Handle value of search input changes
+   * @param {String} e - event handler for an input element
+   */
+  const handleSearchTextChange = (e) => {
+    // Clears any existing timer (only once the user has finished typing)
+    clearTimeout(searchTimeout); // to ensure that multiple rapid changes to the search input do not trigger multiple search requests.
+
+    setSearchText(e.target.value);
+
+    // Sets a new timer using setTimeout
+    setSearchTimeout(
+      setTimeout(
+        () => {
+          // Filter results based on the search input prompts
+          const searchResults = allPosts.filter(
+            (item) =>
+              item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+              item.prompt.toLowerCase().includes(searchText.toLowerCase()),
+          );
+
+          // Store the filtered results for display
+          setSearchedResults(searchResults);
+        },
+        500, // delays the execution of filtering by 500 ms.
+      ),
+    );
+  };
+
   return (
     <section
       className={twMerge(
@@ -83,7 +114,14 @@ const Home = () => {
 
       {/* Form Field for Search Posts */}
       <div className="mt-16">
-        <FormField />
+        <FormField
+          labelName="Search Posts"
+          type="text"
+          name="text"
+          placeholder="Search Posts"
+          value={searchText}
+          handleChange={handleSearchTextChange}
+        />
       </div>
 
       {/* Results */}
@@ -118,7 +156,10 @@ const Home = () => {
             >
               {searchText ? (
                 // Display all past generated images based on Search Query
-                <RenderCards data={[]} message="No search results found" />
+                <RenderCards
+                  data={searchedResults}
+                  message="No search results found"
+                />
               ) : (
                 // Display all past generated images
                 <RenderCards data={allPosts} message="No posts found" />
