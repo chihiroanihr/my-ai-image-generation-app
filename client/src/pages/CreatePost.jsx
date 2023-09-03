@@ -6,8 +6,6 @@ import { getRandomPrompt } from "../utils";
 import { previewIcon } from "../assets";
 
 const CreatePost = () => {
-  const REQUEST_URL = "http://localhost:8080/api/v1/dalle";
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -40,7 +38,7 @@ const CreatePost = () => {
         setGeneratingImg(true);
 
         // Response: AI-generated image
-        const response = await fetch(REQUEST_URL, {
+        const response = await fetch("http://localhost:8080/api/v1/dalle", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
