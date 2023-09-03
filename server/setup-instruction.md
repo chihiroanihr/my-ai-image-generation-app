@@ -280,3 +280,60 @@ Make sure to add **Credit Balance** to be able to use OpenAI API.<br/>Refer to [
    ```
 
 2. Start the server: `npm start`
+
+# Setup Cloudinary
+
+1. Go to [Cloudinary Website](https://cloudinary.com/), and sign-in.
+
+2. Click **Dashboard** on the side-bar, copy "_**Cloud Name**_", "_**API Key**_", and "_**API Secret**_" values.
+
+3. Paste those values on _**.env**_ file as following:
+
+   ```
+   CLOUDINARY_CLOUD_NAME="{{Cloud Name}}"
+   CLOUDINARY_API_KEY="{{API Key}}"
+   CLOUDINARY_API_SECRET="{{API Secret}}"
+   ```
+
+4. Make sure to re-start your server: `npm start`
+
+5. Configure Cloudinary in any of your files inside _**/routes**_ (refer to **Getting Started** section that can be found at post-login or top sidebar):
+
+   ```js
+   import { v2 as cloudinary } from "cloudinary";
+
+   // Configure Cloudinary
+   cloudinary.config({
+     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+     api_key: process.env.CLOUDINARY_API_KEY,
+     api_secret: process.env.CLOUDINARY_API_SECRET,
+   });
+   ```
+
+# Upload to Cloudinary
+
+1. Upload your assets via:
+
+   ```js
+   cloudinary.uploader.upload(photo);
+   ```
+
+   For example in _**/routes/postRoutes.js**_:
+
+   ```js
+   // Route to upload asset to Cloudinary
+   router.route("/").post(async (req, res) => {
+     try {
+       // Get asset info from client input
+       const { photo } = req.body;
+
+       // Upload asset
+       const photoUrl = await cloudinary.uploader.upload(photo);
+       ...
+
+       res.status(201).json({ success: true, data: photoUrl });
+     } catch {
+       res.status(500).json({ success: false, message: error });
+     }
+   });
+   ```
