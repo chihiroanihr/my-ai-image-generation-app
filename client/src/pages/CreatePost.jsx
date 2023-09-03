@@ -37,7 +37,7 @@ const CreatePost = () => {
       try {
         setGeneratingImg(true);
 
-        // Response: AI-generated image
+        // Response from dalleRoutes.js (AI-generated image)
         const response = await fetch("http://localhost:8080/api/v1/dalle", {
           method: "POST",
           headers: {
@@ -62,7 +62,7 @@ const CreatePost = () => {
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (error) {
         // Error
-        console.log(error);
+        console.log("[LOG] ", error);
         alert(error);
       } finally {
         setGeneratingImg(false);

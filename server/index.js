@@ -40,7 +40,7 @@ const startServer = async () => {
       console.log(`Server has started on port http://localhost:${PORT}`)
     );
   } catch (error) {
-    console.log(error);
+    console.log("[LOG] ", error);
   }
 };
 

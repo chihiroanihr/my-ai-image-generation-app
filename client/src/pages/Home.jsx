@@ -45,7 +45,7 @@ const Home = () => {
         </p>
       </div>
 
-      {/* Form Field */}
+      {/* Form Field for Search Posts */}
       <div className="mt-16">
         <FormField />
       </div>
@@ -73,7 +73,7 @@ const Home = () => {
               </h2>
             )}
 
-            {/* Render Results as Cards */}
+            {/* Render Results(Posts) as Cards */}
             <div
               className={twMerge(
                 "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
@@ -81,9 +81,11 @@ const Home = () => {
               )}
             >
               {searchText ? (
+                // Display all past generated images based on Search Query
                 <RenderCards data={[]} message="No search results found" />
               ) : (
                 <RenderCards data={[]} message="No posts found" />
+                // Display all past generated images
               )}
             </div>
           </>

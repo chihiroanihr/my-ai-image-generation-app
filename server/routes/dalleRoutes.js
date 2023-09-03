@@ -34,6 +34,7 @@ router.route("/").post(async (req, res) => {
       size: "1024x1024",
       response_format: "b64_json",
     });
+    // console.log(aiResponse)
 
     // Obtain the result image
     const image = aiResponse.data[0].b64_json; // verify via logging!
