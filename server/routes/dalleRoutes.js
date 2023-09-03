@@ -14,10 +14,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_API_KEY,
 });
 
-router.route("/").get((req, res) => {
-  res.send("Hello from DALL-E");
-});
-
 /**
  * Talk to OpenAI DALL-E API
  * (Make a call to the OpenAI DALL-E API and based on the prompt, it will return AI-generated result images.)
