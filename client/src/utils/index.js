@@ -21,8 +21,8 @@ export function getRandomPrompt(prompt) {
 /**
  * Download/save image utility function.
  *
- * @param {*} _id - ID of the photo
- * @param {*} photo - Photo url
+ * @param {import("mongoose").ObjectId} _id - ID of the photo
+ * @param {String} photo - Photo url
  */
 export async function downloadImage(_id, photo) {
   FileSaver.saveAs(photo, `download-${_id}.jpeg`);

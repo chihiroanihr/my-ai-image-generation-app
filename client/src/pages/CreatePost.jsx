@@ -16,18 +16,26 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Handle form input value change
+  /**
+   * Handle form input value change
+   * @param {String} e - event handler for an input element
+   */
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle surprise me button clicked
+  /**
+   * Handle "Surprise Me" button clicked
+   */
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     setForm({ ...form, prompt: randomPrompt });
   };
 
-  // Handle form submit
+  /**
+   * Handle form Submit (call to the backend)
+   * @param {String} e - event handler for an input element
+   */
   const handleSubmit = async (e) => {
     e.preventDefault(); // avoid reloading after submit
 
@@ -63,7 +71,9 @@ const CreatePost = () => {
     }
   };
 
-  // Start generating image (call to the backend)
+  /**
+   * Start generating image (call to the backend)
+   */
   const generateImage = async () => {
     // If prompt entered
     if (form.prompt) {

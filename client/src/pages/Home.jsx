@@ -22,7 +22,9 @@ const Home = () => {
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearhText] = useState("");
 
-  // Get all the posts from database
+  /**
+   * Get all the posts from database
+   */
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
