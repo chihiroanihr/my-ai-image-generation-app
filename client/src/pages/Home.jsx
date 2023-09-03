@@ -10,7 +10,7 @@ const RenderCards = ({ data, message }) => {
   // If no data exist
   return (
     <h2
-      className={twMerge("text-xl font-bold uppercase text-[#6469ff]", "mt-5")}
+      className={twMerge("mt-5", "text-xl font-bold uppercase text-[#6469ff]")}
     >
       {message}
     </h2>
