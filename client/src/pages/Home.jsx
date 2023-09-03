@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { SvgLoader, Card, FormField } from "../components";
 
@@ -21,6 +21,40 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearhText] = useState("");
+
+  // Get all the posts from database
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+
+      try {
+        // Response from /routes/postRoutes.js
+        const response = await fetch("http://localhost:8080/api/v1/post", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log(response);
+
+        if (response.ok) {
+          // Get the result
+          const result = await response.json();
+          // Store the result
+          setAllPosts(result.data.reverse()); // newest post at the top
+        }
+      } catch (error) {
+        // Error
+        console.log("[LOG] ", error);
+        alert(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Execute Fetch Posts
+    fetchPosts();
+  }, []);
 
   return (
     <section
@@ -84,8 +118,8 @@ const Home = () => {
                 // Display all past generated images based on Search Query
                 <RenderCards data={[]} message="No search results found" />
               ) : (
-                <RenderCards data={[]} message="No posts found" />
                 // Display all past generated images
+                <RenderCards data={allPosts} message="No posts found" />
               )}
             </div>
           </>
