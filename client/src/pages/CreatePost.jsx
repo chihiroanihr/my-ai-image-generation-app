@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { useNavigate } from "react-router-dom";
 import { FormField, SvgLoader } from "../components";
 import { getRandomPrompt } from "../utils";
-import { preview } from "../assets";
+import { previewIcon } from "../assets";
 
 const CreatePost = () => {
   const REQUEST_URL = "http://localhost:8080/api/v1/dalle";
@@ -132,7 +132,7 @@ const CreatePost = () => {
               />
             ) : (
               <img
-                src={preview}
+                src={previewIcon}
                 alt="preview"
                 className="h-9/12 w-9/12 object-contain opacity-40"
               />
