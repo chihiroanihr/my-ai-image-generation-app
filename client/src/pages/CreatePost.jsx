@@ -28,7 +28,40 @@ const CreatePost = () => {
   };
 
   // Handle form submit
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // avoid reloading after submit
+
+    // If form prompt and AI-generated photo exist
+    if (form.prompt && form.photo) {
+      setLoading(true);
+
+      try {
+        // Response from postRoutes.js
+        const response = await fetch("http://localhost:8080/api/v1/post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+
+        await response.json();
+
+        // Go back to home
+        navigate("/");
+      } catch (error) {
+        // Error
+        console.log("[LOG] ", error);
+        alert(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    // If form prompt and AI-generated photo does not exist
+    else {
+      alert("Please enter a prompt and generate an image.");
+    }
+  };
 
   // Start generating image (call to the backend)
   const generateImage = async () => {
