@@ -16,7 +16,7 @@ const FormField = ({
       <div className={twMerge("flex items-center gap-2", "mb-2")}>
         {/* Label Text */}
         <label
-          htmlFor="name"
+          htmlFor={name}
           className={twMerge("block", "text-sm font-medium text-gray-900")}
         >
           {labelName}
