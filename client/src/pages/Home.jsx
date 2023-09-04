@@ -5,7 +5,9 @@ import { SvgLoader, Card, FormField } from "../components";
 const RenderCards = ({ data, message }) => {
   // If data exists then render data over the Card component.
   if (data?.length > 0)
-    return data.map((post) => <Card key={post.id} {...post} />);
+    return data.map((post, index) => (
+      <Card key={`${post.id}-${index}`} {...post} />
+    ));
 
   // If no data exist
   return (
@@ -27,36 +29,36 @@ const Home = () => {
   /**
    * Get all the posts from database
    */
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
+  const fetchPosts = async () => {
+    setLoading(true);
 
-      try {
-        // Response from /routes/postRoutes.js
-        const response = await fetch("http://localhost:8080/api/v1/post", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        // console.log(response);
+    try {
+      // Response from /routes/postRoutes.js
+      const response = await fetch("http://localhost:8080/api/v1/post", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(response);
 
-        if (response.ok) {
-          // Get the result
-          const result = await response.json();
-          // Store the result
-          setAllPosts(result.data.reverse()); // newest post at the top
-        }
-      } catch (error) {
-        // Error
-        console.log("[LOG] ", error);
-        alert(error);
-      } finally {
-        setLoading(false);
+      if (response.ok) {
+        // Get the result
+        const result = await response.json();
+        // Store the result
+        setAllPosts(result.data.reverse()); // newest post at the top
       }
-    };
+    } catch (error) {
+      // Error
+      console.log("[LOG] ", error);
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // Execute Fetch Posts
+  // Execute Fetch Posts
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -116,7 +118,7 @@ const Home = () => {
       <div className="mt-16">
         <FormField
           labelName="Search Posts"
-          type="text"
+          type="search"
           name="text"
           placeholder="Search Posts"
           value={searchText}
