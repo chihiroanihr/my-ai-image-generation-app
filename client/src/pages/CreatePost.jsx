@@ -55,7 +55,17 @@ const CreatePost = () => {
           body: JSON.stringify(form),
         });
 
-        await response.json();
+        // Parse the response
+        const data = await response.json();
+
+        // If not success then throw new error
+        if (response.status !== 200) {
+          const errorStatusText = response.statusText;
+          const errorMessage = data?.error?.message;
+          throw new Error(
+            `${errorStatusText}${errorMessage ? ` (${errorMessage})` : ""}`,
+          );
+        }
 
         // Go back to home
         navigate("/");
