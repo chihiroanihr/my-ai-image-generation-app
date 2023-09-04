@@ -32,3 +32,15 @@ Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, an
   `npm install mongoose`
 - [**OpenAI Node API Library**](https://www.npmjs.com/package/openai): Provides access to the OpenAI REST API</br>
   `npm install openai`
+
+## Client Environment
+
+- [Vite.js](https://vitejs.dev/)
+
+### Run App
+
+`npm run dev`
+
+### For Production
+
+`npm run build`
