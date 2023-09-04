@@ -1,4 +1,4 @@
-# ai-image-generation-app_mern
+# ai-image-generation-app_mern</br>([DALL·E 2](https://labs.openai.com/) Clone)
 
 Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, and Cloudinary.
 
@@ -64,3 +64,8 @@ Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, an
 ### Run Server App
 
 `npm start`
+
+## Reference
+
+- [Youtube](https://www.youtube.com/watch?v=EyIvuigqDoA)
+- [Github](https://github.com/adrianhajdin/project_ai_mern_image_generation)
