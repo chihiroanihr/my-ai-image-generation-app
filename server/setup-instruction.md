@@ -125,6 +125,8 @@ While inside _**/server**_ folder...
 
    Otherwise the database name will be registered as "test" in your MongoDB cluster.
 
+   [Reference Website](https://www.section.io/engineering-education/nodejs-mongoosejs-mongodb/)
+
 # Connect MongoDB with your application
 
 1. Create folder _**/database**_. Inside the folder, create _**connect.js**_ file which will contain a function that connects the application to the database:
