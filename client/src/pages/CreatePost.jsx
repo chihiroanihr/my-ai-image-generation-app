@@ -55,13 +55,15 @@ const CreatePost = () => {
           body: JSON.stringify(form),
         });
 
+        console.log(response);
+
         // Parse the response
         const data = await response.json();
 
         // If not success then throw new error
-        if (response.status !== 200) {
-          const errorStatusText = response.statusText;
-          const errorMessage = data?.error?.message;
+        if (!data.success) {
+          const errorStatusText = data.message?.http_code;
+          const errorMessage = data.message?.message;
           throw new Error(
             `${errorStatusText}${errorMessage ? ` (${errorMessage})` : ""}`,
           );
