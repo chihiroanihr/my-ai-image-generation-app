@@ -1,5 +1,5 @@
 import downloadIcon from "./download.png";
-import logo from "./logo.svg";
+import openaiLogo from "./openAI-logo.svg";
 import previewIcon from "./preview.png";
 
-export { downloadIcon, logo, previewIcon };
+export { downloadIcon, openaiLogo, previewIcon };

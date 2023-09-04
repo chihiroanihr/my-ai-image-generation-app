@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Home, CreatePost } from "./pages";
-import { logo } from "./assets";
+import { openaiLogo } from "./assets";
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
       >
         {/* Logo */}
         <Link to="/">
-          <img src={logo} alt="logo" className="w-28 object-contain" />
+          <img src={openaiLogo} alt="logo" className="w-28 object-contain" />
         </Link>
 
         {/* Create Post Button */}
