@@ -33,6 +33,13 @@ Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, an
 - [**OpenAI Node API Library**](https://www.npmjs.com/package/openai): Provides access to the OpenAI REST API</br>
   `npm install openai`
 
+## Third Party APIs Used
+
+- [**Mongo DB**](https://cloud.mongodb.com/)
+- [**Open AI**](https://platform.openai.com/)
+- [**Cloudinary**](https://console.cloudinary.com/console)
+
+
 ## Client Environment
 
 - [Vite.js](https://vitejs.dev/)
