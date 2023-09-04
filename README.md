@@ -1,6 +1,6 @@
 # ai-image-generation-app_mern</br>([DALL·E 2](https://labs.openai.com/) Clone)
 
-Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, and Cloudinary.
+Full-Stack **MERN** AI Image Generation App with Tailwind, OpenAI's DALL-E model, and Cloudinary.
 
 ## Preview
 
@@ -34,9 +34,12 @@ Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, an
 - [**OpenAI Node API Library**](https://www.npmjs.com/package/openai): Provides access to the OpenAI REST API</br>
   `npm install openai`
 
-## Third Party APIs Used
+## Database Platform
 
 - [**Mongo DB**](https://cloud.mongodb.com/)
+
+## Third Party APIs
+
 - [**Open AI**](https://platform.openai.com/)
 - [**Cloudinary**](https://console.cloudinary.com/console)
 
