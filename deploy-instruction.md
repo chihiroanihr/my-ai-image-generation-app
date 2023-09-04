@@ -19,11 +19,17 @@
 
 5. Click on "**Create Web Services**" button which will start the deployment (**The deployment will fail at this point.**)
 
-6. On left sidebar, click "**Environment** and insert all the environment values exactly same as from the _**.env**_ file, OR you can also choose to add the secret file (i.e. _**.env**_ or _**.npmrc**_ files).
+6. On left sidebar, click "**Environment**" and insert all the environment values exactly same as from the _**.env**_ file, OR you can also choose to add the secret file (i.e. _**.env**_ or _**.npmrc**_ files).
 
-7. Right below the top navbar, click "**Manual Deploy**" > "**Clear build cache & deploy**" button to re-deploy.
+7. By default, Render uses Node version **14.17.0**. Render deploy will cause error if node version does not match between Render CLI and your local application.
 
-8. If you get the following error:
+   Add an environment variable called **NODE_VERSION** in Render > "**Environment**" and set the value to a valid Node version that you want to use.
+
+   OR refer to [**This Website**](https://render.com/docs/node-version) to explore other methods.
+
+8. Right below the top navbar, click "**Manual Deploy**" > "**Clear build cache & deploy**" button to re-deploy.
+
+9. If you get the following error:
 
    ```bash
    MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/
@@ -37,7 +43,7 @@
 
    2. You will see only current local IP address (your computer) is whitelisted. Click "**Add Addresses**" button > click "_**Allow access from anywhere**_" and save.
 
-9. Back to Render website, right below the top navbar, click "**Manual Deploy**" > "**Clear build cache & deploy**" button to re-deploy.
+10. Back to Render website, right below the top navbar, click "**Manual Deploy**" > "**Clear build cache & deploy**" button to re-deploy.
 
 # Change all local URL to the newly deployed backend URL
 
