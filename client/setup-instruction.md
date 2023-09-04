@@ -11,7 +11,7 @@ While inside _**/client**_ folder...
 
    - [**Tailwind CSS for Vite**](https://tailwindcss.com/docs/guides/vite)</br>
      `npm install -D tailwindcss postcss autoprefixer`
-   - [**Prettier Plugin for Tailwind CSS**](https://tailwindcss.com/docs/guides/vite) [Optional]</br>
+   - [**Prettier Plugin for Tailwind CSS**](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) [Optional]</br>
      `npm install -D prettier prettier-plugin-tailwindcss`
    - [**Tailwind Merge**](https://www.npmjs.com/package/tailwind-merge) [Optional]</br>
      `npm install tailwind-merge`
