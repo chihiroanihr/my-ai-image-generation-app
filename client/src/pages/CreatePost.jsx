@@ -41,6 +41,12 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // avoid reloading after submit
 
+    // If string contains non-alphabetic characters
+    if (/[^A-Za-z\s]/.test(form.name)) {
+      alert("Please enter your name using only letters.");
+      return;
+    }
+
     // If form prompt and AI-generated photo exist
     if (form.prompt && form.photo) {
       setLoading(true);
