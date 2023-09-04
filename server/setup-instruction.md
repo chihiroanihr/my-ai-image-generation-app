@@ -97,8 +97,33 @@ While inside _**/server**_ folder...
 5. Copy the string provided under "**3. Add your connection string into your application code**". Paste the string inside _**.env**_ file and replace `<password>` with your own password:
 
    ```
-   MONGODB_CONNECTION_URL="mongodb+srv://{username}:<password>@cluster0.{...}.mongodb.net/?retryWrites=true&w=majority"
+   MONGODB_CONNECTION_URL="mongodb+srv://{{username}}:<password>@{{cluster-name}}.{...}.mongodb.net/?retryWrites=true&w=majority"
    ```
+
+   OR
+
+   ```
+   MONGODB_USERNAME="username"
+   MONGODB_PASSWORD="password"
+   MONGODB_CLUSTER_NAME="cluster-name"
+   ```
+
+   If you need to specify database name, add it as:
+
+   ```
+   MONGODB_CONNECTION_URL="mongodb+srv://{{username}}:<password>@{{cluster-name}}.{...}.mongodb.net/{{database-name}}?retryWrites=true&w=majority"
+   ```
+
+   OR
+
+   ```
+   MONGODB_USERNAME="username"
+   MONGODB_PASSWORD="password"
+   MONGODB_CLUSTER_NAME="cluster-name"
+   MONGODB_DATABASE_NAME="database-name"
+   ```
+
+   Otherwise the database name will be registered as "test" in your MongoDB cluster.
 
 # Connect MongoDB with your application
 
@@ -126,14 +151,30 @@ While inside _**/server**_ folder...
    import connectDB from "./database/connect.js";
    ```
 
-3. Modify _**startServer()**_ function inside _**index.js**_ and call _**connectDB()**_ function:
+3. Add path to the MongoDB connection url inside _**index.js**_:
+
+   ```js
+   const CONN_URL = process.env.MONGODB_CONNECTION_URL;
+   ```
+
+   OR
+
+   ```js
+   const CONN_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${
+     process.env.MONGODB_PASSWORD
+   }@${process.env.MONGODB_CLUSTER_NAME}.uqz6no2.mongodb.net/${
+     process.env.MONGODB_DATABASE_NAME ? process.env.MONGODB_DATABASE_NAME : ""
+   }?retryWrites=true&w=majority`;
+   ```
+
+4. Modify _**startServer()**_ function inside _**index.js**_ and call _**connectDB()**_ function:
 
    ```js
    // Start Server
    const startServer = async () => {
      try {
        // Connect to Database
-       connectDB(process.env.MONGODB_CONNECTION_URL);
+       connectDB(MONGODB_CONNECTION_URL);
 
        // Open Server
        app.listen(PORT, () =>
@@ -145,7 +186,7 @@ While inside _**/server**_ folder...
    };
    ```
 
-4. Make sure to re-start your server via `npm start` and verify that MongoDB is connected.
+5. Make sure to re-start your server via `npm start` and verify that MongoDB is connected.
 
 # Create Model
 
