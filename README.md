@@ -3,6 +3,7 @@
 Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, and Cloudinary.
 
 ## Preview
+
 <img width="900" alt="thumbnail-1" src="https://github.com/chihiroanihr/ai-image-generation-app_mern/assets/42660669/2bf1b1aa-e47e-46ad-9457-0dd7bcbc4a77">
 <img width="900" alt="thumbnail-2" src="https://github.com/chihiroanihr/ai-image-generation-app_mern/assets/42660669/c5936793-2a9e-4bb6-b1da-483a7a40f723">
 
@@ -39,15 +40,27 @@ Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, an
 - [**Open AI**](https://platform.openai.com/)
 - [**Cloudinary**](https://console.cloudinary.com/console)
 
+## Deployment
+
+- Client deployed with [**Vercel**](https://vercel.com/)
+- Server deployed with [**Render**](https://render.com/)
 
 ## Client Environment
 
-- [Vite.js](https://vitejs.dev/)
+- [**Vite.js**](https://vitejs.dev/)
 
-### Run App
+### Run Client App
 
 `npm run dev`
 
 ### For Production
 
 `npm run build`
+
+## Server Environment
+
+- [**Node.js**](https://nodejs.org)
+
+### Run Server App
+
+`npm start`
