@@ -55,8 +55,6 @@ const CreatePost = () => {
           body: JSON.stringify(form),
         });
 
-        console.log(response);
-
         // Parse the response
         const data = await response.json();
 
