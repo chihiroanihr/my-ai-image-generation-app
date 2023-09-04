@@ -8,6 +8,13 @@ import dalleRoutes from "./routes/dalleRoutes.js";
 
 const PORT = 8080;
 
+const MONGODB_CONNECTION_URL =
+  `mongodb+srv://${process.env.MONGODB_USERNAME}` +
+  `:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_NAME}` +
+  `.uqz6no2.mongodb.net/${
+    process.env.MONGODB_DB_NAME ? process.env.MONGODB_DB_NAME : ""
+  }?retryWrites=true&w=majority`;
+
 // Pull env variables
 dotenv.config();
 
@@ -33,7 +40,7 @@ app.get("/", async (req, res) => {
 const startServer = async () => {
   try {
     // Connect to Database
-    connectDB(process.env.MONGODB_CONNECTION_URL);
+    connectDB(MONGODB_CONNECTION_URL);
 
     // Open Server
     app.listen(PORT, () =>
