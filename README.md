@@ -2,6 +2,10 @@
 
 Full-Stack MERN AI Image Generation App with Tailwind, OpenAI's DALL-E model, and Cloudinary.
 
+## Preview
+<img width="900" alt="thumbnail-1" src="https://github.com/chihiroanihr/ai-image-generation-app_mern/assets/42660669/2bf1b1aa-e47e-46ad-9457-0dd7bcbc4a77">
+<img width="900" alt="thumbnail-2" src="https://github.com/chihiroanihr/ai-image-generation-app_mern/assets/42660669/c5936793-2a9e-4bb6-b1da-483a7a40f723">
+
 ## Packages Installed
 
 - [**Tailwind CSS for Vite**](https://tailwindcss.com/docs/guides/vite)</br>
