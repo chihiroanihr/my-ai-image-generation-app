@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { SvgLoader, Card, FormField } from "../components";
 
+import { SERVER_URL } from "../constants/serverUrl";
+
 const RenderCards = ({ data, message }) => {
   // If data exists then render data over the Card component.
   if (data?.length > 0)
@@ -34,7 +36,7 @@ const Home = () => {
 
     try {
       // Response from /routes/postRoutes.js
-      const response = await fetch("http://localhost:8080/api/v1/post", {
+      const response = await fetch(`${SERVER_URL}/api/v1/post`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

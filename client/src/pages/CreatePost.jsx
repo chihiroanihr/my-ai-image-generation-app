@@ -5,6 +5,8 @@ import { FormField, SvgLoader } from "../components";
 import { getRandomPrompt } from "../utils";
 import { previewIcon } from "../assets";
 
+import { SERVER_URL } from "../constants/serverUrl";
+
 const CreatePost = () => {
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const CreatePost = () => {
 
       try {
         // Response from postRoutes.js
-        const response = await fetch("http://localhost:8080/api/v1/post", {
+        const response = await fetch(`${SERVER_URL}/api/v1/post`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,13 +77,16 @@ const CreatePost = () => {
    * Start generating image (call to the backend)
    */
   const generateImage = async () => {
+    // Avoid double form submission during generation process
+    if (generatingImg) return;
+
     // If prompt entered
     if (form.prompt) {
       try {
         setGeneratingImg(true);
 
         // Response from dalleRoutes.js (AI-generated image)
-        const response = await fetch("http://localhost:8080/api/v1/dalle", {
+        const response = await fetch(`${SERVER_URL}/api/v1/dalle`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
